@@ -48,7 +48,7 @@ export default async function Home({ searchParams }: { searchParams: string }) {
                     {capitalCase(mAnime.status)}
                   </div>
                   <div className={`absolute top-16 -left-2 p-2 bg-contrast`}>{mAnime.totalChapters} Chapters</div>
-                  <div className={`absolute bottom-36 -left-2 p-2 bg-ongoing`}>
+                  <div className={`absolute bottom-24 -left-2 p-2 bg-ongoing`}>
                     {calculateDaysUntilNextDayOfWeek(mAnime.releaseSchedule)}
                   </div>
                   <Image
