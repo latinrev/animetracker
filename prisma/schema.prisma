@@ -10,11 +10,9 @@ datasource db {
 model anime {
   id              String @id @default(auto()) @map("_id") @db.ObjectId
   chaptersRead    String
-  hiatus          String
-  img             String
   name            String
   nextReleaseDate String
-  pageNumber      String
+  readWebsite     String
   releaseSchedule String
   startDate       String
   status          String

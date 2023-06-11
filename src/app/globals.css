@@ -2,6 +2,10 @@
 @tailwind components;
 @tailwind utilities;
 
-body {
-  background-color: #121d20;
+.hidden {
+  display: none;
+}
+
+.text-black {
+  color: #000;
 }
