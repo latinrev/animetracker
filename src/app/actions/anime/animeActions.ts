@@ -21,7 +21,6 @@ export async function deleteAnimeAction(id: string) {
     revalidatePath("/")
 }
 
-
 export async function readChapterAnimeAction(id: string, data: string) {
     const newChapter = +data + 1
     await editAnimeChapter(id, newChapter.toString())

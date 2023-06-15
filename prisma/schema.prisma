@@ -17,4 +17,12 @@ model anime {
   startDate       String
   status          String
   totalChapters   String
+  uid             String
+}
+
+model users {
+  id       String @id @default(auto()) @map("_id") @db.ObjectId
+  email    String @unique
+  password String
+  username String
 }

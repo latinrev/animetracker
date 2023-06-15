@@ -1,20 +1,21 @@
 import { anime } from "@prisma/client";
 import { client } from "../utils/prismaClient";
-import { buildFilter, deleteActionField } from "@/utils/utils";
+import { buildFilter, deleteActionField, handlePromise } from "@/utils/utils";
+
 
 export const fetchAnimes = async ({ searchQuery = "" }) => {
-    const filter = searchQuery ? buildFilter(searchQuery) : {};
+    const filter = buildFilter(searchQuery);
+    console.log(filter)
     return await client.anime.findMany(filter);
-};
-
+}
 
 export const createAnime = async (animeData: anime) => {
     const newAnime = deleteActionField(animeData) as anime
-    await client.anime.create({ data: { ...newAnime } })
+    await client.anime.create({ data: { ...newAnime, } })
 }
 
 export const getAnime = async (id: string) => {
-    return await client.anime.findUnique({ where: { id: id } })
+    return await client.anime.findFirst({ where: { AND: { id: id } } }).catch(e => e)
 }
 
 export const editAnime = async (id: string, updatedAnime: anime) => {
@@ -33,7 +34,4 @@ export const editAnimeChapter = async (id: string, updatedChapter: string) => {
 export const changeAnimeStatus = async (id: string, newStatus: string) => {
     await client.anime.update({ data: { status: newStatus }, where: { id: id } })
 }
-
-
-
 

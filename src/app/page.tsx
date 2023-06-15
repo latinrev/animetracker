@@ -18,12 +18,22 @@ import {
   BsXLg,
 } from "react-icons/bs";
 import { calculateDaysUntilNextDayOfWeek } from "@/utils/utils";
+import { getServerSession } from "next-auth";
+import { authOptions } from "@/utils/auth";
+import { redirect } from "next/navigation";
 
 export const revalidate = 10;
 
 export default async function Home({ searchParams }: { searchParams: string }) {
+  const session = await getServerSession(authOptions);
+  const user = session?.user;
+  console.log(session);
   const searchQuery = searchParams.search?.toString() || "";
   let animes = await fetchAnimes({ searchQuery });
+
+  if (!session) {
+    redirect("/auth/login");
+  }
 
   return (
     <div className="min-h-screen w-screen flex text-white ">
@@ -32,6 +42,20 @@ export default async function Home({ searchParams }: { searchParams: string }) {
           <li>
             <Link href="/create">Create new anime...</Link>
           </li>
+          {!session ? (
+            <>
+              <li>
+                <Link href="/auth/register">Register</Link>
+              </li>
+              <li>
+                <Link href="/auth/login">Login</Link>
+              </li>
+            </>
+          ) : (
+            <li>
+              <Link href="/auth/logout">Logout</Link>
+            </li>
+          )}
           {
             // do tags
           }

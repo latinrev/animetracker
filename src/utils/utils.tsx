@@ -5,14 +5,18 @@ import { Prisma, anime } from "@prisma/client";
 import { capitalCase } from "change-case";
 
 export const buildFilter = (searchQuery = "") => {
-  const filter: Prisma.animeFindManyArgs = {
-    where: {
-      name: {
-        contains: searchQuery,
-        mode: "insensitive",
-      },
-    },
-  };
+  const filter: Prisma.animeFindManyArgs = searchQuery
+    ? {
+        where: {
+          AND: {
+            name: {
+              contains: searchQuery,
+              mode: "insensitive",
+            },
+          },
+        },
+      }
+    : { where: { AND: {} } };
   return filter;
 };
 
@@ -96,4 +100,8 @@ export function calculateDaysUntilNextDayOfWeek(nextDayOfWeek: string) {
   } else {
     return `${dayString} ${daysDifference} days`;
   }
+}
+
+export async function handlePromise<T>(action: () => Promise<T>) {
+  return await action().catch((e: Error) => e.message);
 }
