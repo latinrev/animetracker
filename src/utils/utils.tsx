@@ -101,7 +101,3 @@ export function calculateDaysUntilNextDayOfWeek(nextDayOfWeek: string) {
     return `${dayString} ${daysDifference} days`;
   }
 }
-
-export async function handlePromise<T>(action: () => Promise<T>) {
-  return await action().catch((e: Error) => e.message);
-}

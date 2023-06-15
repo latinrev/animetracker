@@ -12,5 +12,6 @@ export const animeFields: ExtendedAnime = {
     releaseSchedule: buildField("releaseSchedule", { required: true, selectOptions: ["Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday", "Sunday"] }),
     chaptersRead: buildField("chaptersRead", { required: true }),
     totalChapters: buildField("totalChapters", { required: true, }),
-    readWebsite: buildField("readWebsite")
+    readWebsite: buildField("readWebsite"),
+    uid: buildField("uid", { hidden: false, required: true })
 };
