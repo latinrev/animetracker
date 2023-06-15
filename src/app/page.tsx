@@ -100,12 +100,12 @@ export default async function Home({ searchParams }: { searchParams: string }) {
                             <BsPen></BsPen>
                           </Link>
 
-                          <Link
+                          <a
                             target="_blank"
                             href={`${mAnime.readWebsite}`}
                             className="items-end flex opacity-0  group-hover:opacity-100 transition-all p-1 ">
                             <BsBookHalf></BsBookHalf>
-                          </Link>
+                          </a>
                           <ActionButton
                             action={deleteAnimeAction}
                             buttonText={<BsArchiveFill />}

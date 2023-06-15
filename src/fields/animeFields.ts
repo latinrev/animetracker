@@ -13,5 +13,5 @@ export const animeFields: ExtendedAnime = {
     chaptersRead: buildField("chaptersRead", { required: true }),
     totalChapters: buildField("totalChapters", { required: true, }),
     readWebsite: buildField("readWebsite"),
-    uid: buildField("uid", { hidden: false, required: true })
+    uid: buildField("uid", { hidden: true })
 };
