@@ -1,6 +1,6 @@
 import { anime } from "@prisma/client";
 import { client } from "../utils/prismaClient";
-import { buildFilter, deleteActionField, handlePromise } from "@/utils/utils";
+import { buildFilter, deleteActionField } from "@/utils/utils";
 
 
 export const fetchAnimes = async ({ searchQuery = "" }) => {
