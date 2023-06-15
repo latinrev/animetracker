@@ -3,6 +3,13 @@ import { client } from "@/utils/prismaClient"
 import { NextAuthOptions } from "next-auth"
 import CredentialsProvider from "next-auth/providers/credentials"
 import bcrypt from "bcrypt"
+
+interface Credentials {
+    username: string
+    email: string
+    password: string
+    from: string
+}
 export const authOptions: NextAuthOptions = ({
 
     pages: {
@@ -15,7 +22,7 @@ export const authOptions: NextAuthOptions = ({
                 email: { label: "email", type: "text" },
                 password: { label: "Password", type: "password" }
             },
-            async authorize(credentials, req) {
+            async authorize(credentials: Credentials, req) {
                 console.log({ credentials, req })
                 const { username, email, password, from } = credentials
                 let user = await client.users.findFirst({ where: { email: credentials?.email } })
@@ -24,7 +31,7 @@ export const authOptions: NextAuthOptions = ({
                 if (user) {
                     let isPassword = await bcrypt.compare(password, user?.password)
                     if (isPassword) {
-                        return user
+                        return user as any
                     }
                 } else {
                     return null
