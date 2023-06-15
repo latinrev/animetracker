@@ -20,9 +20,9 @@ client.$use(async (params, next) => {
 })
 
 client.$use(async (params, next) => {
-    const session = await getServerSession(authOptions)
+    const session = await getServerSession(authOptions) as any
     if (session && params.args.where && params.action === "findFirst" || params.action === "findMany") {
-        params.args.where.AND.uid = session?.user.sub
+        params.args.where.AND.uid = session?.user?.sub
     }
     const result = await next(params)
     return result
