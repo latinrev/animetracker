@@ -129,7 +129,7 @@ export default async function Home({ searchParams }: { searchParams: string }) {
                             data={mAnime.chaptersRead}
                             className="items-end flex opacity-0  group-hover:opacity-100 transition-all p-1"
                           />
-                          {mAnime.status === "Ongoing" || mAnime.status === "Finished" ? (
+                          {mAnime.status === "Ongoing" || mAnime.status === "Hiatus" ? (
                             <ActionButton
                               action={changeStatusAction}
                               buttonText={<BsCheckLg />}
