@@ -1,5 +1,5 @@
 "use server";
-import { changeAnimeStatus, createAnime, deleteAnime, editAnime, editAnimeChapter } from "@/services/animeDb";
+import { createAnime, deleteAnime, updateAnime } from "@/services/animeDb";
 import { anime } from "@prisma/client";
 import { revalidatePath } from "next/cache";
 
@@ -10,8 +10,8 @@ export async function createAnimeAction(data: FormData) {
 }
 
 export async function updateAnimeAction(data: FormData) {
-    let newAnime = Object.fromEntries(data.entries()) as anime;
-    await editAnime(newAnime.id, newAnime);
+    let animeData = Object.fromEntries(data.entries()) as anime;
+    await updateAnime(animeData.id, animeData);
     revalidatePath("/");
     revalidatePath("/edit")
 }
@@ -21,17 +21,18 @@ export async function deleteAnimeAction(id: string) {
     revalidatePath("/")
 }
 
-export async function readChapterAnimeAction(id: string, data: string) {
-    const newChapter = +data + 1
-    await editAnimeChapter(id, newChapter.toString())
+export async function readChapterAction(id: string, chapter: string) {
+    const updatedChapter = +chapter + 1
+    await updateAnime(id, { chaptersRead: updatedChapter.toString() })
     revalidatePath("/")
 }
-export async function unreadChapterAnimeAction(id: string, data: string) {
-    const newChapter = +data - 1
-    await editAnimeChapter(id, newChapter.toString())
+export async function unreadChapterAction(id: string, chapter: string) {
+    const updatedChapter = +chapter - 1
+    await updateAnime(id, { chaptersRead: updatedChapter.toString() })
     revalidatePath("/")
 }
+
 export async function changeStatusAction(id: string, status: string) {
-    await changeAnimeStatus(id, status)
+    await updateAnime(id, { status })
     revalidatePath("/")
 }

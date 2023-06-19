@@ -9,3 +9,25 @@
 .text-black {
   color: #000;
 }
+body {
+}
+
+.bg-ongoing {
+  background-color: #53bf9d;
+}
+.bg-finished {
+  background-color: #f94c66;
+}
+.bg-hiatus {
+  background-color: #4f709c;
+}
+
+.anime-grid {
+  grid-template-columns: repeat(4, minmax(0, calc(1fr - 10px)));
+}
+
+@layer components {
+  .input {
+    @apply bg-transparent border rounded border-primary text-white my-1;
+  }
+}

@@ -17,12 +17,14 @@ model anime {
   startDate       String
   status          String
   totalChapters   String
-  uid             String
+  userId          String @db.ObjectId
+  user            users  @relation(fields: [userId], references: [id])
 }
 
 model users {
-  id       String @id @default(auto()) @map("_id") @db.ObjectId
-  email    String @unique
+  id       String  @id @default(auto()) @map("_id") @db.ObjectId
+  email    String  @unique
   password String
   username String
+  animes   anime[]
 }

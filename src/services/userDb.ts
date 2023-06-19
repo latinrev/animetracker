@@ -4,8 +4,7 @@ import { deleteActionField } from "@/utils/utils";
 
 
 export const createUser = async (userData: Omit<users, "id">) => {
-    const newUser = deleteActionField(userData) as users
-    return await client.users.create({ data: { ...newUser } })
+    return await client.users.create({ data: { ...userData } })
 }
 
 export const getUser = async (id: string) => {

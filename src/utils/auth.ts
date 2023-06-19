@@ -11,10 +11,7 @@ interface Credentials {
     from: string
 }
 export const authOptions: NextAuthOptions = ({
-
-    pages: {
-        signIn: "/?success=true",
-    },
+    pages: { signIn: "/auth", signOut: "/auth/logout" },
     providers: [
         CredentialsProvider({
             name: "Credentials",
@@ -23,11 +20,10 @@ export const authOptions: NextAuthOptions = ({
                 password: { label: "Password", type: "password" }
             },
             async authorize(credentials: Credentials, req) {
-                console.log({ credentials, req })
-                const { username, email, password, from } = credentials
-                let user = await client.users.findFirst({ where: { email: credentials?.email } })
+                const { email, password } = credentials
+                console.log(credentials)
+                let user = await client.users.findFirst({ where: { email }, include: { animes: true } })
                 console.log(user)
-                if (!user && from !== "/login") user = await createUser({ username, email, password })
                 if (user) {
                     let isPassword = await bcrypt.compare(password, user?.password)
                     if (isPassword) {

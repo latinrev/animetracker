@@ -12,8 +12,9 @@ interface Form {
   buttonText: string;
   className?: React.ComponentProps<"div">["className"];
   buttonClassName?: React.ComponentProps<"div">["className"];
+  styles?: { inputClassName?: string; optionClassName?: string; selectClassName?: string; spanClassName?: string };
 }
-export default function Form({ fields, defaultValues, formAction, goTo, buttonText, className, buttonClassName }: Form) {
+export default function Form({ fields, defaultValues, formAction, goTo, buttonText, className, buttonClassName, styles }: Form) {
   const [isPending, startTransition] = useTransition();
   const { replace } = useRouter();
 
@@ -26,7 +27,7 @@ export default function Form({ fields, defaultValues, formAction, goTo, buttonTe
 
   return (
     <form className={`flex flex-col text-white ${className}`} action={executeAction}>
-      {buildInputs(fields, defaultValues)}
+      {buildInputs(fields, defaultValues, { ...styles })}
       <button disabled={isPending} type="submit" className={buttonClassName}>
         {buttonText}
       </button>
