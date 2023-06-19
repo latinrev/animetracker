@@ -25,7 +25,7 @@ export default function AuthScreen() {
   };
 
   return (
-    <div className="flex flex-col h-screen justify-center  items-center">
+    <div className="flex flex-col h-screen justify-center items-center">
       <h1 className="text-2xl p-5 text-white">{!isRegister ? "Sign in to your account" : "Sign up to your account"}</h1>
       <form onSubmit={handleSubmit(onSubmit)}>
         <div className="div border border-primary flex flex-col w-96 px-8 py-16 gap-2 rounded text-primary">

@@ -38,23 +38,25 @@ export default async function AnimeCard({ anime }) {
                       action={deleteAnimeAction}
                       buttonText={<BsFillTrashFill />}
                       id={anime.id}
-                      className="items-end flex opacity-0  group-hover:opacity-100 transition-all p-1"
+                      className="items-end flex opacity-100 sm:opacity-0  group-hover:opacity-100 transition-all p-1"
                       withConfirmation={true}
                     />
-                    <Link href={`edit?id=${anime.id}`} className="items-end flex opacity-0  group-hover:opacity-100 transition-all p-1 ">
+                    <Link
+                      href={`edit?id=${anime.id}`}
+                      className="items-end flex opacity-100 sm:opacity-0 group-hover:opacity-100 transition-all p-1 ">
                       <BsPen></BsPen>
                     </Link>
                     <a
                       target="_blank"
                       href={`${anime.readWebsite}`}
-                      className="items-end flex opacity-0  group-hover:opacity-100 transition-all p-1 ">
+                      className="items-end flex opacity-100 sm:opacity-0 group-hover:opacity-100 transition-all p-1 ">
                       <BsBookHalf></BsBookHalf>
                     </a>
                     <ActionButton
                       action={deleteAnimeAction}
                       buttonText={<BsArchiveFill />}
                       id={anime.id}
-                      className="items-end flex opacity-0  group-hover:opacity-100 transition-all p-1"
+                      className="items-end flex opacity-100 sm:opacity-0 group-hover:opacity-100 transition-all p-1"
                       withConfirmation={true}
                     />
                   </div>
@@ -64,14 +66,14 @@ export default async function AnimeCard({ anime }) {
                       buttonText={<BsDashLg />}
                       id={anime.id}
                       data={anime.chaptersRead}
-                      className="items-end flex opacity-0  group-hover:opacity-100 transition-all p-1"
+                      className="items-end flex opacity-100 sm:opacity-0  group-hover:opacity-100 transition-all p-1"
                     />
                     <ActionButton
                       action={readChapterAction}
                       buttonText={<BsPlusLg />}
                       id={anime.id}
                       data={anime.chaptersRead}
-                      className="items-end flex opacity-0  group-hover:opacity-100 transition-all p-1"
+                      className="items-end flex opacity-100 sm:opacity-0  group-hover:opacity-100 transition-all p-1"
                     />
                     {anime.status === "Ongoing" ? (
                       <ActionButton
@@ -79,7 +81,7 @@ export default async function AnimeCard({ anime }) {
                         buttonText={<BsCheckLg />}
                         id={anime.id}
                         data={"Finished"}
-                        className="items-end flex opacity-0  group-hover:opacity-100 transition-all p-1"
+                        className="items-end flex opacity-100 sm:opacity-0  group-hover:opacity-100 transition-all p-1"
                       />
                     ) : (
                       <ActionButton
@@ -87,7 +89,7 @@ export default async function AnimeCard({ anime }) {
                         buttonText={<BsXLg />}
                         id={anime.id}
                         data={"Ongoing"}
-                        className="items-end flex opacity-0  group-hover:opacity-100 transition-all p-1"
+                        className="items-end flex opacity-100 sm:opacity-0  group-hover:opacity-100 transition-all p-1"
                       />
                     )}
                     <ActionButton
@@ -95,7 +97,7 @@ export default async function AnimeCard({ anime }) {
                       buttonText={<BsFillStopwatchFill />}
                       id={anime.id}
                       data={"Hiatus"}
-                      className="items-end flex opacity-0  group-hover:opacity-100 transition-all p-1"
+                      className="items-end flex opacity-100 sm:opacity-0  group-hover:opacity-100 transition-all p-1"
                     />
                   </div>
                 </div>
