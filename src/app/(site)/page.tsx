@@ -11,7 +11,7 @@ import { redirect } from "next/navigation";
 export const revalidate = 10;
 // do tags
 export default async function Home({ searchParams }: { searchParams: string }) {
-  const session = getServerSession(authOptions);
+  const session = await getServerSession(authOptions);
   const searchQuery = searchParams.search?.toString() || "";
   let animes = await fetchAnimes({ searchQuery });
   if (!session) redirect("/auth");
