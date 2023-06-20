@@ -4,12 +4,17 @@ import Link from "next/link";
 import { anime } from "@prisma/client";
 import AnimeCard from "@/components/AnimeCard";
 import { BsPlusLg } from "react-icons/bs";
+import { getServerSession } from "next-auth";
+import { authOptions } from "@/utils/auth";
+import { redirect } from "next/navigation";
 
 export const revalidate = 10;
 // do tags
 export default async function Home({ searchParams }: { searchParams: string }) {
+  const session = getServerSession(authOptions);
   const searchQuery = searchParams.search?.toString() || "";
   let animes = await fetchAnimes({ searchQuery });
+  if (!session) redirect("/auth");
   return (
     <div className="min-h-screen w-full  text-white content-center">
       <div className="flex flex-col items-center pt-5 pb-5 ">
