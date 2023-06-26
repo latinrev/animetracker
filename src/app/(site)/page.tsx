@@ -1,4 +1,3 @@
-import SearchBar from "@/components/SearchBar";
 import { fetchAnimes } from "@/services/animeDb";
 import Link from "next/link";
 import { anime } from "@prisma/client";
@@ -7,6 +6,7 @@ import { BsPlusLg } from "react-icons/bs";
 import { getServerSession } from "next-auth";
 import { authOptions } from "@/utils/auth";
 import { redirect } from "next/navigation";
+import SearchBar from "@/components/SearchBar";
 
 export const revalidate = 10;
 // do tags
