@@ -30,6 +30,4 @@ client.$use(async (params, next) => {
     return result
 })
 
-
-
 export { client };

@@ -1,4 +1,3 @@
-import { deleteAnimeAction, unreadChapterAction, readChapterAction, changeStatusAction } from "@/app/actions/anime/animeActions";
 import { calculateDaysUntilNextDayOfWeek } from "@/utils/utils";
 import Link from "next/link";
 import Image from "next/image";
@@ -14,14 +13,15 @@ import {
   BsFillStopwatchFill,
 } from "react-icons/bs";
 import ActionButton from "./ActionButton";
+import { changeStatusAction, deleteAnimeAction, readChapterAction, unreadChapterAction } from "@/actions/anime/animeActions";
 
 export default async function AnimeCard({ anime }) {
   return (
-    <div key={anime.id} className="flex flex-col sm:text-sm ">
-      <div className="div relative">
-        <div className="relative border border-primary rounded-md">
+    <div key={anime.id} className="flex flex-col sm:text-sm h-full">
+      <div className="div relative h-full">
+        <div className="relative border border-primary rounded-md h-full">
           <div className={`absolute top-2 -left-2 p-2 text-bg bg-primary`}>{anime.totalChapters} Chapters</div>
-          <div className="flex flex-col">
+          <div className="flex flex-col h-auto">
             <Image
               alt={anime.name + " - image"}
               src={`https://picsum.photos/200/200?anime=${anime.id}`}
@@ -30,7 +30,7 @@ export default async function AnimeCard({ anime }) {
               sizes="100vw"
               className="h-auto w-auto"
             />
-            <div className="bottom-0 right-0 text-right  text-primary w-full group p-2 px-5 ">
+            <div className="bottom-0 right-0 text-right  text-primary w-full group py-4 px-5 flex flex-col justify-center ">
               <div className="div flex gap-x-2 justify-between transition-all   ">
                 <div className="flex flex-col items-center justify-center ">
                   <div className="flex justify-start items-start w-full">
@@ -106,8 +106,14 @@ export default async function AnimeCard({ anime }) {
                     {anime.name}
                   </Link>
                   <div className="text-xs md:text-sm">
-                    <h5>{calculateDaysUntilNextDayOfWeek(anime.releaseSchedule)}</h5>
-                    <h5>Release every: {anime.releaseSchedule}</h5>
+                    <div>
+                      {anime.status !== "Finished" && anime.status !== "Hiatus" ? (
+                        <>
+                          {calculateDaysUntilNextDayOfWeek(anime.releaseSchedule)}
+                          <h5>Release every: {anime.releaseSchedule}</h5>
+                        </>
+                      ) : null}
+                    </div>
                     <h5>Read Chapters: {anime.chaptersRead}</h5>
                     <h5>{anime.status}</h5>
                   </div>

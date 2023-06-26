@@ -1,4 +1,4 @@
-import SearchBar from "@/components/searchBar";
+import SearchBar from "@/components/SearchBar";
 import { fetchAnimes } from "@/services/animeDb";
 import Link from "next/link";
 import { anime } from "@prisma/client";

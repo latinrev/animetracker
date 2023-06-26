@@ -1,8 +1,8 @@
 import { animeFields } from "@/fields/animeFields";
 import Form from "@/components/Form";
-import { createAnimeAction, updateAnimeAction } from "@/app/actions/anime/animeActions";
 import { anime } from "@prisma/client";
 import Link from "next/link";
+import { createAnimeAction, updateAnimeAction } from "@/actions/anime/animeActions";
 
 export default async function AnimeForm({ action, anime }: { action: "EDIT" | "CREATE"; anime?: anime }) {
   return (

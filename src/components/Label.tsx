@@ -8,6 +8,5 @@ interface InputProps extends HTMLProps<HTMLLabelElement> {
   label?: string;
 }
 export default function Label({ hidden, label, className }: InputProps) {
-  console.log(className);
   return <label className={`${hidden ? "hidden" : "block"} ${className || ""}`}>{capitalCase(label || "")}</label>;
 }

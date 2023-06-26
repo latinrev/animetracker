@@ -1,6 +1,5 @@
 import { users } from "@prisma/client";
 import { client } from "../utils/prismaClient";
-import { deleteActionField } from "@/utils/utils";
 
 
 export const createUser = async (userData: Omit<users, "id">) => {

@@ -1,11 +1,11 @@
 "use client";
-import { GenericField } from "@/types/GenericField";
-import { buildInputs } from "@/utils/utils";
 import { useRouter } from "next/navigation";
 import { useTransition } from "react";
+import BuildInputs, { GenericField } from "../formbuilder/BuildInputs";
+import { ExtendedAnime } from "@/types/Anime";
 
 interface Form {
-  fields: GenericField;
+  fields: GenericField<ExtendedAnime>;
   defaultValues?: any;
   formAction: (data: FormData) => Promise<void>;
   goTo: string;
@@ -27,7 +27,7 @@ export default function Form({ fields, defaultValues, formAction, goTo, buttonTe
 
   return (
     <form className={`flex flex-col text-white ${className}`} action={executeAction}>
-      {buildInputs(fields, defaultValues, { ...styles })}
+      <BuildInputs fields={fields} defaultValues={defaultValues} styles={{ ...styles }} />
       <button disabled={isPending} type="submit" className={buttonClassName}>
         {buttonText}
       </button>

@@ -21,9 +21,7 @@ export const authOptions: NextAuthOptions = ({
             },
             async authorize(credentials: Credentials, req) {
                 const { email, password } = credentials
-                console.log(credentials)
                 let user = await client.users.findFirst({ where: { email }, include: { animes: true } })
-                console.log(user)
                 if (user) {
                     let isPassword = await bcrypt.compare(password, user?.password)
                     if (isPassword) {

@@ -28,7 +28,6 @@ export default function Input({
   register = null,
   ...props
 }: InputProps) {
-  console.log(styles?.labelClassName);
   return (
     <>
       {renderIf && (
