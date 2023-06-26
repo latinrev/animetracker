@@ -6,7 +6,7 @@ import { BsPlusLg } from "react-icons/bs";
 import { getServerSession } from "next-auth";
 import { authOptions } from "@/utils/auth";
 import { redirect } from "next/navigation";
-import SearchBar from "@/components/SearchBar";
+import SearchBar from "@/components/searchBar";
 
 export const revalidate = 10;
 // do tags
