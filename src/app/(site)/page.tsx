@@ -4,7 +4,6 @@ import { anime } from "@prisma/client";
 import AnimeCard from "@/components/AnimeCard";
 import { BsPlusLg } from "react-icons/bs";
 import { getServerSession } from "next-auth";
-import { authOptions } from "@/utils/auth";
 import { redirect } from "next/navigation";
 import SearchBar from "@/components/searchBar";
 
